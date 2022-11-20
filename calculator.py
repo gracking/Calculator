@@ -1,76 +1,96 @@
-
-print(' '*34,'calculator')
+dict={'1':['add','sum'],'2':['subtract','difference'],'3':['multiply','product'],'4':['divide','quotient']}
+print(' '*34,'CALCULATOR')
 print(' '*32,'--------------')
 
-def sum(x,y):
-    s=float(x)+float(y)
-    print(s)
-
-def difference(x,y):
-    d=float(x)-float(y)
-    print(d)
-
-def product(x,y):
-    p=float(x)*float(y)
-    print(p)
-
-def quotient(x,y):
-    q=float(x)/float(y)
-    print(q)
-
-def main():
-    while True:
-        x=input('enter ur first number')
-        if x.isdigit()==True:
-            pass
-        else:
-            print('enter a valid number ')
-            continue
-        y=input('enter ur second number')
-        if y.isdigit()==True:
-            pass
-        else:
-            print('enter a valid number ')
-            continue
-        print('what would u like to find with these numbers')
-        print('1. sum')
-        print('2. difference')
-        print('3. product')
-        print('4. quotient')
-        print('please enter their respective serial number')
-        c=input()
-
-        if c=='1':
-            sum(x,y)
-            break
-
-        elif c=='2':
-            difference(x,y)
-            break
-
-        elif c=='3':
-            product(x,y)
-            break
-
-        elif c=='4':
-            quotient(x,y)
-            break
-        else:
-            print('invalid serial number')
-            continue
-        
 while True:
-    main()
     while True:
-        print('press "x" to close or "r" to use calculator again')
-        a=input()
-        if a=='r':
+        #main
+        print('What would you like to find:')
+        print('1. Sum')
+        print('2. Difference')
+        print('3. Product')
+        print('4. Quotient')
+        c=input('Please enter their respective serial number : ')
+
+
+        if c not in ['1','2','3','4']:
+            print('Enter a valid number.')
+            continue
+        l=[]
+        b=input(f'How many numbers would you like to {dict[c][0]}.')
+
+
+        if b.isdigit()==True:
+            if int(b)==0:
+                print('You cant do anything with zero numbers here.')
+                continue
+            pass
+        else:
+            print('Enter a number')
+            continue
+        if int(b)==0:
+            continue
+
+      
+        for i in range(int(b)):
+           while True:
+                n=input(f'Enter  no.{i+1} : ')
+                if n.isdigit()==True:
+                    if c=='4':
+                        if n=='0':
+                            if i !=0:
+                                print('You cant divide a number by zero.')
+                                continue
+                    l.append(n)
+                    break
+                else:
+                    print('Enter a number.')
+                    continue
+
+
+        print(f'The {dict[c][1]} is',end=' ')
+
+       #sum 
+        if c=='1':
+            s=0
+            for i in range(len(l)):
+                s+=float(l[i])
+            print(s)
             break
-        elif a=='x':
+        #difference
+        elif c=='2':
+            d=0
+            for i in range(1,len(l)):
+                d+=float(l[i])
+            d=float(l[0])-d
+            print(d)
+            break
+        #product
+        elif c=='3':
+            p=1
+            for i in range(len(l)):
+                p*=float(l[i])
+            print(p)
+            break
+        #quotient
+        elif c=='4':
+            q=1
+            for i in range(1,len(l)):
+                q*=float(l[i])
+            q=float(l[0])/q
+            print(q)
+            break
+
+        
+    while True:
+        a=input('Press "x" to close or "r" to use calculator again : ' )
+        if a.lower()=='r':
+            break
+        elif a.lower()=='x':
             break
         else:
             continue
-    if a=='r':
+    if a.lower()=='r':
         continue
     else:
         break
